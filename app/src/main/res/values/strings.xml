@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Android Rater</string>
+
+    <!-- string constants for home activity -->
+    <string name="home_button_goto_add">Add New Element</string>
+    <string name="home_button_goto_search">Search Elements</string>
+
+
+    <!-- string constants for add activity-->
+    <string name="add_text_element_name">Element Name</string>
+    <string name="add_editText_element_name">Name</string>
+    <string name="add_text_element_description">Description</string>
+    <string name="add_editText_element_description">description</string>
+    <string name="add_text_element_rating">Rating</string>
+    <string name="add_button_finish">Add Element</string>
+
+
 </resources>
