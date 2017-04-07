@@ -20,10 +20,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void browse_database(View view){
-
+        // TODO: make the activity for the browse and allow users to get to it
     }
 
     public void search_database(View view){
+        // create new activity for searching the database
         Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
         startActivity(intent);
     }

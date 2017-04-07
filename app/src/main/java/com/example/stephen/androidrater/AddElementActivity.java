@@ -17,15 +17,19 @@ public class AddElementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_element);
 
+        // locate the elements in the activity
         et_element_name = (EditText)findViewById(R.id.editText_add_element_name);
         et_element_description = (EditText)findViewById(R.id.editText_add_element_description);
         rb_element_rating = (RatingBar)findViewById(R.id.ratingBar_add_element_rating);
     }
 
     public void add_element(View view){
+        // collect the data from the elements
         String element_name = et_element_name.getText().toString();
         String element_description = et_element_description.getText().toString();
-
         float element_rating = rb_element_rating.getRating();
+
+        // TODO: store the data collected somewhere
+
     }
 }
