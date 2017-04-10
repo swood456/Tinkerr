@@ -6,7 +6,7 @@ package com.example.stephen.androidrater;
 
 public class DatabaseElement {
 
-    int _id;
+    static int _id = 0;
     String _name;
     String _description;
     float _rating;
@@ -14,11 +14,18 @@ public class DatabaseElement {
     public DatabaseElement(){
     }
 
-    public DatabaseElement(int id, String name, String description, float rating){
-        this._id = id;
+    public DatabaseElement(String name, String description, float rating){
+        _id++;
         this._name = name;
         this._description = description;
         this._rating = rating;
+    }
+
+    public DatabaseElement(String name, String description){
+        _id++;
+        this._name = name;
+        this._description = description;
+        this._rating = 0.0f;
     }
 
     public int get_id(){

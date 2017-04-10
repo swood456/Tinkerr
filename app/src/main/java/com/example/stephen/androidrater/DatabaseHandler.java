@@ -7,6 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Stephen on 4/10/2017.
  */
@@ -32,7 +35,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db){
         String CREATE_FOOD_TABLE = "CREATE TABLE " + TABLE_FOOD +
                 "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT," +
-                KEY_DESCRIPTION + " TEXT," + KEY_RATING + "FLOAT" + ")";
+                KEY_DESCRIPTION + " TEXT," + KEY_RATING + "REAL" + ")";
         db.execSQL(CREATE_FOOD_TABLE);
     }
 
@@ -49,9 +52,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
+        values.put(KEY_ID, element.get_id());
         values.put(KEY_NAME, element.get_name());
         values.put(KEY_DESCRIPTION, element.get_description());
-        values.put(KEY_RATING, element.get_rating());
+        //values.put(KEY_RATING, element.get_rating());
 
         // Inserting Row
         db.insert(TABLE_FOOD, null, values);
@@ -68,10 +72,36 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        DatabaseElement element = new DatabaseElement(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1), cursor.getString(2), Float.parseFloat(cursor.getString(3)));
-        // return contact
+        //DatabaseElement element = new DatabaseElement(cursor.getString(1), cursor.getString(2),
+        //        Float.parseFloat(cursor.getString(3)));
+
+        DatabaseElement element = new DatabaseElement(cursor.getString(1), cursor.getString(2));
         return element;
+    }
+
+
+    public List<DatabaseElement> getAllContacts() {
+        List<DatabaseElement> contactList = new ArrayList<DatabaseElement>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_FOOD;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                DatabaseElement element = new DatabaseElement();
+                element.set_id(Integer.parseInt(cursor.getString(0)));
+                element.set_name(cursor.getString(1));
+                element.set_description(cursor.getString(2));
+                // Adding contact to list
+                contactList.add(element);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return contactList;
     }
 
 }

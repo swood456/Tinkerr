@@ -2,6 +2,7 @@ package com.example.stephen.androidrater;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
@@ -30,6 +31,15 @@ public class AddElementActivity extends AppCompatActivity {
         float element_rating = rb_element_rating.getRating();
 
         // TODO: store the data collected somewhere
+        DatabaseHandler db = new DatabaseHandler(this);
+
+        //add thing
+        db.addElement(new DatabaseElement(element_name, element_description, element_rating));
+
+        //DatabaseElement got_ele = db.getElement(1);
+        //Log.d("got name: " , got_ele.get_name());
+
+        //print out all elements
 
     }
 }

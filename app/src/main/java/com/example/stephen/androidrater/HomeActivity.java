@@ -3,7 +3,10 @@ package com.example.stephen.androidrater;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -25,8 +28,16 @@ public class HomeActivity extends AppCompatActivity {
 
     public void search_database(View view){
         // create new activity for searching the database
-        Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+        //startActivity(intent);
+        DatabaseHandler db = new DatabaseHandler(this);
+        List<DatabaseElement> contacts = db.getAllContacts();
+
+        for (DatabaseElement cn : contacts) {
+            String log = "Id: " + cn.get_id() + " ,Name: " + cn.get_name() + " ,Phone: " + cn.get_description();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
     }
 
 }
