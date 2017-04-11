@@ -1,11 +1,14 @@
 package com.example.stephen.androidrater;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 public class AddElementActivity extends AppCompatActivity {
 
@@ -31,15 +34,24 @@ public class AddElementActivity extends AppCompatActivity {
         float element_rating = rb_element_rating.getRating();
 
         // TODO: store the data collected somewhere
-        DatabaseHandler db = new DatabaseHandler(this);
+        DatabaseHandler m_db_helper = new DatabaseHandler(view.getContext());
 
-        //add thing
-        db.addElement(new DatabaseElement(element_name, element_description, element_rating));
+        // Gets the data repository in write mode
+        SQLiteDatabase db = m_db_helper.getWritableDatabase();
 
-        //DatabaseElement got_ele = db.getElement(1);
-        //Log.d("got name: " , got_ele.get_name());
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_NAME, element_name);
+        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION, element_description);
 
-        //print out all elements
+// Insert the new row, returning the primary key value of the new row
+        long newRowId = db.insert(FoodTableContract.FoodEntry.TABLE_NAME, null, values);
+
+        Toast t = Toast.makeText(this, "added element with name " + element_name +
+                " into db with id " + newRowId, Toast.LENGTH_LONG);
+        t.show();
+
+        m_db_helper.close();
 
     }
 }
