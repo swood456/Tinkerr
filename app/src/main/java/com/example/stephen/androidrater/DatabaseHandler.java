@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.ContactsContract;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 5;
 
     private static final String DATABASE_NAME = "micro_ratings.db";
 
@@ -24,7 +25,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             "CREATE TABLE " + FoodTableContract.FoodEntry.TABLE_NAME + " (" +
                     FoodTableContract.FoodEntry._ID + " INTEGER PRIMARY KEY," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " TEXT," +
-                    FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " TEXT)";
+                    FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " TEXT," +
+                    FoodTableContract.FoodEntry.COLUMN_NAME_RATING + " TEXT)";
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FoodTableContract.FoodEntry.TABLE_NAME;
 
@@ -33,6 +35,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     public void onCreate(SQLiteDatabase db) {
+        Log.d("mine","making new database!");
+        Log.d("mine", SQL_CREATE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -42,8 +46,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
-
-
 
     public List<DatabaseElement> getAllContacts() {
         List<DatabaseElement> contactList = new ArrayList<DatabaseElement>();
@@ -64,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 contactList.add(element);
             } while (cursor.moveToNext());
         }
-
+        db.close();
         // return contact list
         return contactList;
     }

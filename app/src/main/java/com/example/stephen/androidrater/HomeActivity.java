@@ -41,12 +41,13 @@ public class HomeActivity extends AppCompatActivity {
         String[] projection = {
                 FoodTableContract.FoodEntry._ID,
                 FoodTableContract.FoodEntry.COLUMN_NAME_NAME,
-                FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION
+                FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
+                FoodTableContract.FoodEntry.COLUMN_NAME_RATING
         };
 
 // Filter results WHERE "title" = 'My Title'
         String selection = FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " = ?";
-        String[] selectionArgs = { "name" };
+        String[] selectionArgs = { "item_name" };
 
 // How you want the results sorted in the resulting Cursor
         String sortOrder =
@@ -69,8 +70,12 @@ public class HomeActivity extends AppCompatActivity {
                     cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_NAME));
             String description = cursor.getString(
                     cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION));
+            float rating = cursor.getFloat(
+                    cursor.getColumnIndex(FoodTableContract.FoodEntry.COLUMN_NAME_RATING) );
+
             // just print to log for now
-            Log.d("mine", "id: " + id + " name: " + name + " des: " + description);
+            Log.d("mine", "id: " + id + " name: " + name + " des: " + description + " rating: " + rating);
+
         }
 
         db.close();

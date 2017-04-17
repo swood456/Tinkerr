@@ -42,7 +42,9 @@ public class AddElementActivity extends AppCompatActivity {
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(FoodTableContract.FoodEntry.COLUMN_NAME_NAME, element_name);
+        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_RATING, element_rating);
         values.put(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION, element_description);
+
 
 // Insert the new row, returning the primary key value of the new row
         long newRowId = db.insert(FoodTableContract.FoodEntry.TABLE_NAME, null, values);
