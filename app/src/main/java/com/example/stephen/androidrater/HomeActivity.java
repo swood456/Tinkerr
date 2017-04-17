@@ -34,51 +34,13 @@ public class HomeActivity extends AppCompatActivity {
         //startActivity(intent);
         DatabaseHandler m_db_helper = new DatabaseHandler(this);
 
-        SQLiteDatabase db = m_db_helper.getReadableDatabase();
+        List<DatabaseElement> allElements = m_db_helper.getAllElements();
 
-// Define a projection that specifies which columns from the database
-// you will actually use after this query.
-        String[] projection = {
-                FoodTableContract.FoodEntry._ID,
-                FoodTableContract.FoodEntry.COLUMN_NAME_NAME,
-                FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
-                FoodTableContract.FoodEntry.COLUMN_NAME_RATING
-        };
-
-// Filter results WHERE "title" = 'My Title'
-        String selection = FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " = ?";
-        String[] selectionArgs = { "item_name" };
-
-// How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " DESC";
-
-        Cursor cursor = db.query(
-                FoodTableContract.FoodEntry.TABLE_NAME,     // The table to query
-                projection,                                 // The columns to return
-                selection,                                  // The columns for the WHERE clause
-                selectionArgs,                              // The values for the WHERE clause
-                null,                                       // don't group the rows
-                null,                                       // don't filter by row groups
-                sortOrder                                   // The sort order
-        );
-
-        while(cursor.moveToNext()) {
-            Long id = cursor.getLong(
-                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry._ID));
-            String name = cursor.getString(
-                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_NAME));
-            String description = cursor.getString(
-                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION));
-            float rating = cursor.getFloat(
-                    cursor.getColumnIndex(FoodTableContract.FoodEntry.COLUMN_NAME_RATING) );
-
-            // just print to log for now
-            Log.d("mine", "id: " + id + " name: " + name + " des: " + description + " rating: " + rating);
-
+        for (DatabaseElement dbe: allElements
+             ) {
+            Log.d("mine", "name: " + dbe.get_name() + " des: " + dbe.get_description() + " rating: " + dbe.get_rating());
         }
 
-        db.close();
-
+        m_db_helper.close();
     }
 }
