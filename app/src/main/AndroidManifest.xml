@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".AddElementActivity" />
         <activity android:name=".SearchActivity" />
+        <activity android:name=".BrowseActivity"></activity>
     </application>
 
 </manifest>

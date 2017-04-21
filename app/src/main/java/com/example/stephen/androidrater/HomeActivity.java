@@ -25,22 +25,15 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void browse_database(View view) {
-        // TODO: make the activity for the browse and allow users to get to it
+        // go to browse activity
+        Intent intent = new Intent(HomeActivity.this, BrowseActivity.class);
+        startActivity(intent);
     }
 
     public void search_database(View view) {
         // create new activity for searching the database
-        //Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
-        //startActivity(intent);
-        DatabaseHandler m_db_helper = new DatabaseHandler(this);
+        Intent intent = new Intent(HomeActivity.this, SearchActivity.class);
+        startActivity(intent);
 
-        List<DatabaseElement> allElements = m_db_helper.getAllElements();
-
-        for (DatabaseElement dbe: allElements
-             ) {
-            Log.d("mine", "name: " + dbe.get_name() + " des: " + dbe.get_description() + " rating: " + dbe.get_rating());
-        }
-
-        m_db_helper.close();
     }
 }

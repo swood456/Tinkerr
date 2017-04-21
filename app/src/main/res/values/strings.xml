@@ -6,7 +6,7 @@
     <string name="home_button_goto_search">Search Elements</string>
 
 
-    <!-- string constants for add activity-->
+    <!-- string constants for add activity -->
     <string name="add_text_element_name">Element Name</string>
     <string name="add_editText_element_name">Name</string>
     <string name="add_text_element_description">Description</string>
@@ -14,5 +14,9 @@
     <string name="add_text_element_rating">Rating</string>
     <string name="add_button_finish">Add Element</string>
 
+    <!-- string constants for search activity -->
+    <string name="search_text_search_field">Search</string>
+    <string name="search_editText_field_start"></string>
+    <string name="search_button_search">Go</string>
 
 </resources>
