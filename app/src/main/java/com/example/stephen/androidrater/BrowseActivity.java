@@ -25,7 +25,10 @@ public class BrowseActivity extends AppCompatActivity {
         List<DatabaseElement> allElements = m_db_helper.getAllElements();
 
         m_db_helper.close();
+        ElementAdapter adapter = new ElementAdapter(this, allElements);
+        m_listview.setAdapter(adapter);
 
+/*
         String[] listItems = new String[allElements.size()];
 
         for(int i = 0; i < allElements.size(); i++){
@@ -35,7 +38,7 @@ public class BrowseActivity extends AppCompatActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
         m_listview.setAdapter(adapter);
-
+*/
         // tutorial for this: https://www.raywenderlich.com/124438/android-listview-tutorial
 
     }
