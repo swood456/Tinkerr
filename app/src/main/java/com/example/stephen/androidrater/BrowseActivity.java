@@ -43,18 +43,5 @@ public class BrowseActivity extends AppCompatActivity {
             }
         });
 
-/*
-        String[] listItems = new String[allElements.size()];
-
-        for(int i = 0; i < allElements.size(); i++){
-            DatabaseElement element = allElements.get(i);
-            listItems[i] = element.get_food_name();
-        }
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);
-        m_listview.setAdapter(adapter);
-*/
-        // tutorial for this: https://www.raywenderlich.com/124438/android-listview-tutorial
-
     }
 }
