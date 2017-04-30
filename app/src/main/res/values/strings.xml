@@ -20,4 +20,8 @@
     <string name="search_editText_field_start"></string>
     <string name="search_button_search">Go</string>
 
+    <!-- strings constant for empty list element -->
+    <string name="list_element_default_name">Name</string>
+    <string name="list_element_default_description">Description</string>
+
 </resources>

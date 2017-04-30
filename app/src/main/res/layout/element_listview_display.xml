@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="3"
-        android:textSize="16sp"
-        tools:text="Subtitle"
+        android:textSize="18sp"
+        android:text="@string/list_element_default_name"
         android:layout_alignTop="@+id/element_display_description"
         android:layout_toRightOf="@+id/ratingBar_element_rating"
         android:layout_alignBottom="@+id/ratingBar_element_rating"
@@ -22,7 +22,7 @@
         android:id="@+id/element_display_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Element_Name"
+        android:text="@string/list_element_default_description"
         android:textSize="24sp"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
@@ -38,10 +38,9 @@
         android:paddingRight="4dp"
         android:textColor="#000000"
         android:textSize="12sp"
-        tools:text="Detail"
         android:layout_below="@+id/element_display_description"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:scaleX="0.75"/>
+        />
 
 </RelativeLayout>
