@@ -1,6 +1,7 @@
 package com.example.stephen.androidrater;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class ElementAdapter extends BaseAdapter {
                 (TextView) rowView.findViewById(R.id.element_display_description);
 
 // Get rating element
-        RatingBar detailTextView =
+        RatingBar detailRatingBar =
                 (RatingBar) rowView.findViewById(R.id.ratingBar_element_rating);
 
         // 1
@@ -69,7 +70,8 @@ public class ElementAdapter extends BaseAdapter {
 // 2
         titleTextView.setText(element.get_name());
         subtitleTextView.setText(element.get_description());
-        detailTextView.setRating(element.get_rating());
+        detailRatingBar.setRating(element.get_rating());
+        Log.d("mine", "get rating is: " + element.get_rating());
 
 // 3
         //Picasso.with(mContext).load(recipe.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);

@@ -29,7 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     FoodTableContract.FoodEntry._ID + " INTEGER PRIMARY KEY," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " TEXT," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " TEXT," +
-                    FoodTableContract.FoodEntry.COLUMN_NAME_RATING + " TEXT)";
+                    FoodTableContract.FoodEntry.COLUMN_NAME_RATING + " FLOAT)";
 
     // Query that gets called to delete the database
     private static final String SQL_DELETE_ENTRIES =
@@ -74,11 +74,27 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
+        /*
         while(cursor.moveToNext()){
             DatabaseElement element = new DatabaseElement();
             element.set_name(cursor.getString(1));
             element.set_description(cursor.getString(2));
+            element.set_rating(cursor.getFloat(3));
             // Adding contact to list
+            elementList.add(element);
+        }*/
+        while(cursor.moveToNext()) {
+            DatabaseElement element = new DatabaseElement();
+
+            element.set_name(cursor.getString(
+                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_NAME)));
+
+            element.set_description(cursor.getString(
+                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION)));
+
+            element.set_rating(cursor.getFloat(
+                    cursor.getColumnIndex(FoodTableContract.FoodEntry.COLUMN_NAME_RATING)));
+
             elementList.add(element);
         }
 
