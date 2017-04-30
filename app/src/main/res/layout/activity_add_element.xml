@@ -12,13 +12,30 @@
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
+        <TextView
+            android:id="@+id/text_add_restaurant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_test_restaurant_name"
+            android:layout_column="0"
+            android:layout_row="0"/>
 
+        <EditText
+            android:id="@+id/editText_add_restaurant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:layout_column="1"
+            android:layout_row="0"/>
 
         <TextView
             android:id="@+id/text_add_element_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_text_element_name" />
+            android:text="@string/add_text_element_name"
+            android:layout_column="0"
+            android:layout_row="1"/>
 
         <EditText
             android:id="@+id/editText_add_element_name"
@@ -26,14 +43,15 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="@string/add_editText_element_name" />
+            android:layout_column="1"
+            android:layout_row="1"/>
 
         <TextView
             android:id="@+id/text_add_element_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="0"
-            android:layout_row="1"
+            android:layout_row="2"
             android:text="@string/add_text_element_description" />
 
         <EditText
@@ -41,10 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="1"
+            android:layout_row="2"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="@string/add_editText_element_description" />
+            android:inputType="textPersonName" />
 
 
         <TextView
@@ -53,7 +70,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_column="0"
-            android:layout_row="2"
+            android:layout_row="3"
             android:text="@string/add_text_element_rating" />
 
         <RatingBar
@@ -61,14 +78,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="2"/>
+            android:layout_row="3"/>
 
         <Button
             android:id="@+id/button_add_element"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_column="1"
-            android:layout_row="3"
+            android:layout_row="4"
             android:text="@string/add_button_finish"
             android:onClick="add_element"
             />

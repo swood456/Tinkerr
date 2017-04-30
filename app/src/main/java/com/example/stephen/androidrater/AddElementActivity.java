@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 public class AddElementActivity extends AppCompatActivity {
 
+    EditText et_restaurant_name;
     EditText et_element_name;
     EditText et_element_description;
     RatingBar rb_element_rating;
@@ -22,6 +23,7 @@ public class AddElementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_element);
 
         // locate the elements in the activity
+        et_restaurant_name = (EditText)findViewById(R.id.editText_add_restaurant_name);
         et_element_name = (EditText)findViewById(R.id.editText_add_element_name);
         et_element_description = (EditText)findViewById(R.id.editText_add_element_description);
         rb_element_rating = (RatingBar)findViewById(R.id.ratingBar_add_element_rating);
@@ -30,6 +32,7 @@ public class AddElementActivity extends AppCompatActivity {
     public void add_element(View view){
 
         // collect the data from the ui
+        String restaurant_name = et_restaurant_name.getText().toString();
         String element_name = et_element_name.getText().toString();
         String element_description = et_element_description.getText().toString();
         float element_rating = rb_element_rating.getRating();
@@ -38,7 +41,7 @@ public class AddElementActivity extends AppCompatActivity {
         DatabaseHandler m_db_helper = new DatabaseHandler(view.getContext());
 
         // add the DatabaseElement that we just made into the database
-        DatabaseElement element = new DatabaseElement(element_name, element_description, element_rating);
+        DatabaseElement element = new DatabaseElement(restaurant_name, element_name, element_description, element_rating);
 
         // Add to the database and get the ID
         long newRowId = m_db_helper.addElement(element);

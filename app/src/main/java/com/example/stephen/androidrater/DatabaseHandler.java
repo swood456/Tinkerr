@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // current iteration of the database representation.
     //  if this gets changed onUpdate will be called
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 3;
 
     private static final String DATABASE_NAME = "micro_ratings._db";
 
@@ -26,6 +27,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             "CREATE TABLE " + FoodTableContract.FoodEntry.TABLE_NAME + " (" +
                     FoodTableContract.FoodEntry._ID + " INTEGER PRIMARY KEY," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " TEXT," +
+                    FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT + " TEXT," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " TEXT," +
                     FoodTableContract.FoodEntry.COLUMN_NAME_RATING + " FLOAT)";
 
@@ -54,7 +56,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public long addElement(DatabaseElement element) {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_NAME, element.get_name());
+        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT, element.get_restaurant());
+        values.put(FoodTableContract.FoodEntry.COLUMN_NAME_NAME, element.get_food_name());
         values.put(FoodTableContract.FoodEntry.COLUMN_NAME_RATING, element.get_rating());
         values.put(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION, element.get_description());
 
@@ -71,12 +74,22 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = _db.rawQuery(selectQuery, null);
 
+        String[] col_names = cursor.getColumnNames();
+
+        for (String s:col_names
+             ) {
+            Log.d("mine,", s);
+        }
+
         // looping through all rows and adding to list
         while(cursor.moveToNext())
         {
             DatabaseElement element = new DatabaseElement();
 
-            element.set_name(cursor.getString(
+            element.set_restaurant(cursor.getString(
+                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT)));
+
+            element.set_food_name(cursor.getString(
                     cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_NAME)));
 
             element.set_description(cursor.getString(
@@ -100,6 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // defines which columns we will look through. Want to do them all
         String[] projection = {
                 FoodTableContract.FoodEntry._ID,
+                FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT,
                 FoodTableContract.FoodEntry.COLUMN_NAME_NAME,
                 FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
                 FoodTableContract.FoodEntry.COLUMN_NAME_RATING
@@ -125,7 +139,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         {
             DatabaseElement element = new DatabaseElement();
 
-            element.set_name(cursor.getString(
+            element.set_restaurant(cursor.getString(
+                    cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT)));
+
+            element.set_food_name(cursor.getString(
                     cursor.getColumnIndexOrThrow(FoodTableContract.FoodEntry.COLUMN_NAME_NAME)));
 
             element.set_description(cursor.getString(

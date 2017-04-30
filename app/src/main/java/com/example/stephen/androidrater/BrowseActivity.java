@@ -48,7 +48,7 @@ public class BrowseActivity extends AppCompatActivity {
 
         for(int i = 0; i < allElements.size(); i++){
             DatabaseElement element = allElements.get(i);
-            listItems[i] = element.get_name();
+            listItems[i] = element.get_food_name();
         }
 
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItems);

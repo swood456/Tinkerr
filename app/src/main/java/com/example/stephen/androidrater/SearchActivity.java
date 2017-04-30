@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
-import java.lang.reflect.Array;
 import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
@@ -72,7 +71,7 @@ public class SearchActivity extends AppCompatActivity {
         Log.d("mine", "the things that match what we have are: ");
         for (DatabaseElement dbe: elements
              ) {
-            Log.d("mine", "found something with name: " + dbe.get_name());
+            Log.d("mine", "found something with name: " + dbe.get_food_name());
         }
 
         ElementAdapter adapter = new ElementAdapter(this, elements);

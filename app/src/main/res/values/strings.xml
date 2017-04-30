@@ -8,12 +8,11 @@
 
 
     <!-- string constants for add activity -->
-    <string name="add_text_element_name">Element Name</string>
-    <string name="add_editText_element_name">Name</string>
+    <string name="add_test_restaurant_name">Restaurant Name</string>
+    <string name="add_text_element_name">Food Name</string>
     <string name="add_text_element_description">Description</string>
-    <string name="add_editText_element_description">description</string>
     <string name="add_text_element_rating">Rating</string>
-    <string name="add_button_finish">Add Element</string>
+    <string name="add_button_finish">Add</string>
 
     <!-- string constants for search activity -->
     <string name="search_text_search_field">Search</string>
@@ -21,7 +20,7 @@
     <string name="search_button_search">Go</string>
 
     <!-- strings constant for empty list element -->
-    <string name="list_element_default_name">Name</string>
+    <string name="list_element_default_name">Food Name</string>
     <string name="list_element_default_description">Description</string>
 
 </resources>

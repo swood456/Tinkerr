@@ -1,16 +1,13 @@
 package com.example.stephen.androidrater;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,6 +49,9 @@ public class ElementAdapter extends BaseAdapter {
         // Get view for row item
         View rowView = mInflater.inflate(R.layout.element_listview_display, parent, false);
 
+        TextView restaurant_text_view =
+                (TextView) rowView.findViewById(R.id.element_display_restaurant);
+
         TextView titleTextView =
                 (TextView) rowView.findViewById(R.id.element_display_name);
 
@@ -63,7 +63,8 @@ public class ElementAdapter extends BaseAdapter {
 
         DatabaseElement element = (DatabaseElement) getItem(position);
 
-        titleTextView.setText(element.get_name());
+        restaurant_text_view.setText(element.get_restaurant());
+        titleTextView.setText(element.get_food_name());
         subtitleTextView.setText(element.get_description());
         detailRatingBar.setRating(element.get_rating());
 

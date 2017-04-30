@@ -1,6 +1,5 @@
 package com.example.stephen.androidrater;
 
-import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,6 +17,6 @@ public class ElementActivity extends AppCompatActivity {
 
         tv_element_name = (TextView) findViewById(R.id.text_element_name);
 
-        tv_element_name.setText(element.get_name());
+        tv_element_name.setText(element.get_food_name());
     }
 }
