@@ -2,6 +2,9 @@ package com.example.stephen.androidrater;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -22,11 +25,19 @@ public class BrowseActivity extends AppCompatActivity {
         // get all items in _db
         DatabaseHandler m_db_helper = new DatabaseHandler(this);
 
-        List<DatabaseElement> allElements = m_db_helper.getAllElements();
+        final List<DatabaseElement> allElements = m_db_helper.getAllElements();
 
         m_db_helper.close();
         ElementAdapter adapter = new ElementAdapter(this, allElements);
         m_listview.setAdapter(adapter);
+
+        m_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                DatabaseElement element = allElements.get(pos);
+
+            }
+        });
 
 /*
         String[] listItems = new String[allElements.size()];
