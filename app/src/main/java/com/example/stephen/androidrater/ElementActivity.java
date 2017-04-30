@@ -14,8 +14,10 @@ public class ElementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_element);
 
+        DatabaseElement element = this.getIntent().getExtras().getParcelable("element");
+
         tv_element_name = (TextView) findViewById(R.id.text_element_name);
 
-        tv_element_name.setText("hello world");
+        tv_element_name.setText(element.get_name());
     }
 }
