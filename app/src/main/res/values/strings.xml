@@ -4,6 +4,7 @@
     <!-- string constants for home activity -->
     <string name="home_button_goto_add">Add New Element</string>
     <string name="home_button_goto_search">Search Elements</string>
+    <string name="home_button_goto_browse">Browse Elements</string>
 
 
     <!-- string constants for add activity -->

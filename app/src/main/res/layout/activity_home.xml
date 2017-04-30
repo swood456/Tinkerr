@@ -23,12 +23,22 @@
             />
 
         <Button
+            android:id="@+id/button_home_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/button_home_add_new"
             android:text="@string/home_button_goto_search"
             android:layout_centerHorizontal="true"
             android:onClick="search_database"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_home_search"
+            android:text="@string/home_button_goto_browse"
+            android:layout_centerHorizontal="true"
+            android:onClick="browse_database"
             />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
