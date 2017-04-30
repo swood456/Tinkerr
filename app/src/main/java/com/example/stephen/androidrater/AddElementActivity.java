@@ -45,7 +45,7 @@ public class AddElementActivity extends AppCompatActivity {
 
         // simple print message to screen saying that we sucessfully added
         Toast t = Toast.makeText(this, "added element with name " + element_name +
-                " into db with id " + newRowId, Toast.LENGTH_LONG);
+                " into _db with id " + newRowId, Toast.LENGTH_LONG);
         t.show();
 
         m_db_helper.close();

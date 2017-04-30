@@ -19,7 +19,7 @@ public class BrowseActivity extends AppCompatActivity {
         // get listview
         m_listview = (ListView)findViewById(R.id.browse_listView);
 
-        // get all items in db
+        // get all items in _db
         DatabaseHandler m_db_helper = new DatabaseHandler(this);
 
         List<DatabaseElement> allElements = m_db_helper.getAllElements();

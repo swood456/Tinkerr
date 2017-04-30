@@ -5,8 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //  if this gets changed onUpdate will be called
     private static final int DATABASE_VERSION = 1;
 
-    private static final String DATABASE_NAME = "micro_ratings.db";
+    private static final String DATABASE_NAME = "micro_ratings._db";
 
     // Query that gets called when the database is created
     private static final String SQL_CREATE_ENTRIES =
@@ -35,11 +33,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FoodTableContract.FoodEntry.TABLE_NAME;
 
-    SQLiteDatabase db;
+    private SQLiteDatabase _db;
 
     public DatabaseHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        db = this.getWritableDatabase();
+        _db = this.getWritableDatabase();
     }
 
     public void onCreate(SQLiteDatabase db) {
@@ -61,7 +59,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION, element.get_description());
 
         // add the element, return the id of the row added
-        return db.insert(FoodTableContract.FoodEntry.TABLE_NAME, null, values);
+        return _db.insert(FoodTableContract.FoodEntry.TABLE_NAME, null, values);
     }
 
 
@@ -71,19 +69,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Select All Query
         String selectQuery = "SELECT  * FROM " + FoodTableContract.FoodEntry.TABLE_NAME;
 
-        Cursor cursor = db.rawQuery(selectQuery, null);
+        Cursor cursor = _db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        /*
-        while(cursor.moveToNext()){
-            DatabaseElement element = new DatabaseElement();
-            element.set_name(cursor.getString(1));
-            element.set_description(cursor.getString(2));
-            element.set_rating(cursor.getFloat(3));
-            // Adding contact to list
-            elementList.add(element);
-        }*/
-        while(cursor.moveToNext()) {
+        while(cursor.moveToNext())
+        {
             DatabaseElement element = new DatabaseElement();
 
             element.set_name(cursor.getString(
@@ -121,7 +111,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Define how things will be sorted
         String sortOrder = FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " DESC";
 
-        Cursor cursor = db.query(
+        Cursor cursor = _db.query(
                 FoodTableContract.FoodEntry.TABLE_NAME,     // The table to query
                 projection,                                 // The columns to return
                 selection,                                  // The columns for the WHERE clause
@@ -131,7 +121,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 sortOrder                                   // The sort order
         );
 
-        while(cursor.moveToNext()) {
+        while(cursor.moveToNext())
+        {
             DatabaseElement element = new DatabaseElement();
 
             element.set_name(cursor.getString(
