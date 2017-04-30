@@ -52,29 +52,20 @@ public class ElementAdapter extends BaseAdapter {
         // Get view for row item
         View rowView = mInflater.inflate(R.layout.element_listview_display, parent, false);
 
-        // Get name element
         TextView titleTextView =
                 (TextView) rowView.findViewById(R.id.element_display_name);
 
-// Get description element
         TextView subtitleTextView =
                 (TextView) rowView.findViewById(R.id.element_display_description);
 
-// Get rating element
         RatingBar detailRatingBar =
                 (RatingBar) rowView.findViewById(R.id.ratingBar_element_rating);
 
-        // 1
         DatabaseElement element = (DatabaseElement) getItem(position);
 
-// 2
         titleTextView.setText(element.get_name());
         subtitleTextView.setText(element.get_description());
         detailRatingBar.setRating(element.get_rating());
-        Log.d("mine", "get rating is: " + element.get_rating());
-
-// 3
-        //Picasso.with(mContext).load(recipe.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);
 
         return rowView;
     }
