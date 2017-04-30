@@ -38,7 +38,7 @@ public class BrowseActivity extends AppCompatActivity {
                 DatabaseElement element = allElements.get(pos);
 
                 Intent intent = new Intent(BrowseActivity.this, ElementActivity.class);
-                
+
                 startActivity(intent);
             }
         });
