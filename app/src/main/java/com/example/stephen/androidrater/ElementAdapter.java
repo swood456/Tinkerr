@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -48,23 +49,19 @@ public class ElementAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get view for row item
-        View rowView = mInflater.inflate(R.layout.list_item_element, parent, false);
+        View rowView = mInflater.inflate(R.layout.element_listview_display, parent, false);
 
-        // Get title element
+        // Get name element
         TextView titleTextView =
-                (TextView) rowView.findViewById(R.id.recipe_list_title);
+                (TextView) rowView.findViewById(R.id.element_display_name);
 
-// Get subtitle element
+// Get description element
         TextView subtitleTextView =
-                (TextView) rowView.findViewById(R.id.recipe_list_subtitle);
+                (TextView) rowView.findViewById(R.id.element_display_description);
 
-// Get detail element
-        TextView detailTextView =
-                (TextView) rowView.findViewById(R.id.recipe_list_detail);
-
-// Get thumbnail element
-        ImageView thumbnailImageView =
-                (ImageView) rowView.findViewById(R.id.recipe_list_thumbnail);
+// Get rating element
+        RatingBar detailTextView =
+                (RatingBar) rowView.findViewById(R.id.ratingBar_element_rating);
 
         // 1
         DatabaseElement element = (DatabaseElement) getItem(position);
@@ -72,7 +69,7 @@ public class ElementAdapter extends BaseAdapter {
 // 2
         titleTextView.setText(element.get_name());
         subtitleTextView.setText(element.get_description());
-        detailTextView.setText(Float.toString(element.get_rating()));
+        detailTextView.setRating(element.get_rating());
 
 // 3
         //Picasso.with(mContext).load(recipe.imageUrl).placeholder(R.mipmap.ic_launcher).into(thumbnailImageView);
