@@ -74,13 +74,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         Cursor cursor = _db.rawQuery(selectQuery, null);
 
-        String[] col_names = cursor.getColumnNames();
-
-        for (String s:col_names
-             ) {
-            Log.d("mine,", s);
-        }
-
         // looping through all rows and adding to list
         while(cursor.moveToNext())
         {
