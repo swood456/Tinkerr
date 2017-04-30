@@ -1,11 +1,14 @@
 package com.example.stephen.androidrater;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.lang.reflect.Array;
@@ -15,6 +18,8 @@ public class SearchActivity extends AppCompatActivity {
 
     Spinner search_type_spinner;
     EditText search_field;
+    ListView m_listview;
+    List<DatabaseElement> elements;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,19 @@ public class SearchActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         search_type_spinner.setAdapter(adapter);
+
+        m_listview = (ListView)findViewById(R.id.search_listview);
+
+        m_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
+                DatabaseElement element = elements.get(pos);
+
+                Intent intent = new Intent(SearchActivity.this, ElementActivity.class);
+                intent.putExtra("element", element);
+                startActivity(intent);
+            }
+        });
     }
 
     public void search_db(View view)
@@ -48,10 +66,18 @@ public class SearchActivity extends AppCompatActivity {
         query[0] = search_field.getText().toString();
         DatabaseHandler m_db_helper = new DatabaseHandler(this);
 
-        List<DatabaseElement> elements = m_db_helper.getAllElementsWithQuery(column, query);
+        elements = m_db_helper.getAllElementsWithQuery(column, query);
 
         m_db_helper.close();
+        Log.d("mine", "the things that match what we have are: ");
+        for (DatabaseElement dbe: elements
+             ) {
+            Log.d("mine", "found something with name: " + dbe.get_name());
+        }
 
-        //TODO: add in a list view here that behaves in the same way as the browse activity
+        ElementAdapter adapter = new ElementAdapter(this, elements);
+        m_listview.setAdapter(adapter);
+
+
     }
 }

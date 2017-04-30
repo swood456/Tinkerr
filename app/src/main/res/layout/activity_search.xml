@@ -33,6 +33,7 @@
         android:id="@+id/search_button_go"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="search_db"
         android:layout_alignTop="@+id/search_field"
         android:layout_toEndOf="@+id/search_field"
         android:layout_toRightOf="@+id/search_field"
@@ -46,4 +47,11 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/search_button_go"
         android:layout_marginTop="16dp" />
+
+    <ListView
+        android:id="@+id/search_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/search_spinner_type"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
