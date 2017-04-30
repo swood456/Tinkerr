@@ -68,15 +68,8 @@ public class SearchActivity extends AppCompatActivity {
         elements = m_db_helper.getAllElementsWithQuery(column, query);
 
         m_db_helper.close();
-        Log.d("mine", "the things that match what we have are: ");
-        for (DatabaseElement dbe: elements
-             ) {
-            Log.d("mine", "found something with name: " + dbe.get_food_name());
-        }
 
         ElementAdapter adapter = new ElementAdapter(this, elements);
         m_listview.setAdapter(adapter);
-
-
     }
 }
