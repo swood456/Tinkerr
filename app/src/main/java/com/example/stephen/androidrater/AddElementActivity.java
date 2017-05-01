@@ -1,6 +1,7 @@
 package com.example.stephen.androidrater;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +51,11 @@ public class AddElementActivity extends AppCompatActivity {
         Toast t = Toast.makeText(this, "added element with name " + element_name +
                 " into _db with id " + newRowId, Toast.LENGTH_LONG);
         t.show();
+
+        // go to the element activity for this database element
+        Intent intent = new Intent(AddElementActivity.this, ElementActivity.class);
+        intent.putExtra("element", element);
+        startActivity(intent);
 
         m_db_helper.close();
     }
