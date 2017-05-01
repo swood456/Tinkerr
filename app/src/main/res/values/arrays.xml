@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="database_columns">
+        <Item>Restaurant</Item>
         <item>Name</item>
         <item>Description</item>
         <item>Rating</item>
