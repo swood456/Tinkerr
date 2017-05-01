@@ -14,14 +14,15 @@
 
         <TextView
             android:id="@+id/text_element_restaurant"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8sp"
             tools:text="Restaurant Name" />
 
         <TextView
             android:id="@+id/text_element_name"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_element_restaurant"
