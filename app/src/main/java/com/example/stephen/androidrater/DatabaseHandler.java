@@ -103,6 +103,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // list of elements that match the given query
         List<DatabaseElement> elementList = new ArrayList<DatabaseElement>();
 
+
+
         // defines which columns we will look through. Want to do them all
         String[] projection = {
                 FoodTableContract.FoodEntry._ID,
@@ -111,9 +113,9 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
                 FoodTableContract.FoodEntry.COLUMN_NAME_RATING
         };
-
+    
         // filter that SQLite will look for
-        String selection = query_column + " = ?";
+        String selection = query_column + " = ? COLLATE NOCASE";
 
         // Define how things will be sorted
         String sortOrder = FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " DESC";
