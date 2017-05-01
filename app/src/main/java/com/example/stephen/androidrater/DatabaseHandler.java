@@ -113,7 +113,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
                 FoodTableContract.FoodEntry.COLUMN_NAME_RATING
         };
-    
+
         // filter that SQLite will look for
         String selection = query_column + " = ? COLLATE NOCASE";
 
