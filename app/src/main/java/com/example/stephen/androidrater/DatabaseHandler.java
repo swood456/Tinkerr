@@ -36,6 +36,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + FoodTableContract.FoodEntry.TABLE_NAME;
 
+    private static final String QUERY_ORDER =
+            " ORDER BY " + FoodTableContract.FoodEntry.COLUMN_NAME_RATING + " DESC, " +
+                    FoodTableContract.FoodEntry.COLUMN_NAME_NAME + " ASC, " +
+                    FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT + " ASC";
+
     private SQLiteDatabase _db;
 
     public DatabaseHandler(Context context){
@@ -71,7 +76,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<DatabaseElement> elementList = new ArrayList<DatabaseElement>();
 
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + FoodTableContract.FoodEntry.TABLE_NAME;
+        String selectQuery = "SELECT  * FROM " + FoodTableContract.FoodEntry.TABLE_NAME + QUERY_ORDER;
 
         Cursor cursor = _db.rawQuery(selectQuery, null);
 
@@ -106,7 +111,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
 
         String selectQuery = "SELECT * FROM " + FoodTableContract.FoodEntry.TABLE_NAME +" WHERE " + query_column +
-                " LIKE '%" + query_words[0] + "%'";
+                " LIKE '%" + query_words[0] + "%'" + QUERY_ORDER;
 
         Cursor cursor = _db.rawQuery(selectQuery, null);
 
