@@ -4,6 +4,5 @@
         <item>Restaurant</item>
         <item>food_name</item>
         <item>Description</item>
-        <item>Rating</item>
     </string-array>
 </resources>
