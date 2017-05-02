@@ -49,14 +49,25 @@ public class AddElementActivity extends AppCompatActivity {
 
         // simple print message to screen saying that we sucessfully added
         Toast t = Toast.makeText(this, "added element with name " + element_name +
-                " into _db with id " + newRowId, Toast.LENGTH_LONG);
+                " with id " + newRowId, Toast.LENGTH_LONG);
         t.show();
+
+        m_db_helper.close();
+
+        // clear all fields
+        et_restaurant_name.setText("");
+        et_element_name.setText("");
+        et_element_description.setText("");
+        rb_element_rating.setRating(0.0f);
+
+        et_element_description.clearFocus();
+
 
         // go to the element activity for this database element
         Intent intent = new Intent(AddElementActivity.this, ElementActivity.class);
         intent.putExtra("element", element);
         startActivity(intent);
 
-        m_db_helper.close();
+
     }
 }
