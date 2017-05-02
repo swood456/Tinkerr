@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.net.Uri;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     // current iteration of the database representation.
     //  if this gets changed onUpdate will be called
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
 
     private static final String DATABASE_NAME = "micro_ratings._db";
 
@@ -104,31 +105,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         List<DatabaseElement> elementList = new ArrayList<DatabaseElement>();
 
 
+        String selectQuery = "SELECT * FROM " + FoodTableContract.FoodEntry.TABLE_NAME +" WHERE " + query_column +
+                " LIKE '%" + query_words[0] + "%'";
 
-        // defines which columns we will look through. Want to do them all
-        String[] projection = {
-                FoodTableContract.FoodEntry._ID,
-                FoodTableContract.FoodEntry.COLUMN_NAME_RESTAURANT,
-                FoodTableContract.FoodEntry.COLUMN_NAME_NAME,
-                FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION,
-                FoodTableContract.FoodEntry.COLUMN_NAME_RATING
-        };
-
-        // filter that SQLite will look for
-        String selection = query_column + " = ? COLLATE NOCASE";
-
-        // Define how things will be sorted
-        String sortOrder = FoodTableContract.FoodEntry.COLUMN_NAME_DESCRIPTION + " DESC";
-
-        Cursor cursor = _db.query(
-                FoodTableContract.FoodEntry.TABLE_NAME,     // The table to query
-                projection,                                 // The columns to return
-                selection,                                  // The columns for the WHERE clause
-                query_words,                                // The values for the WHERE clause
-                null,                                       // don't group the rows
-                null,                                       // don't filter by row groups
-                sortOrder                                   // The sort order
-        );
+        Cursor cursor = _db.rawQuery(selectQuery, null);
 
         while(cursor.moveToNext())
         {
@@ -148,7 +128,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
             elementList.add(element);
         }
-
         return elementList;
     }
 }
